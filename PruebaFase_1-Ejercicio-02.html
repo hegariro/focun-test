@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="toggle-div" class="form-group">
+    <label class="label">Etiqueta del campo</label>
+    <div class="input-group">
+      <input type="text" id="nombre" name="nombre" class="form-control" />
+      <span id="message"></span>
+    </div>
+  </div>
+  <button onclick="togglediv()">Ocultar / Mostrar</button>
+  <script type="text/javascript">
+    //		Función que permite alternar entre oculat y mostrar un div
+    function togglediv() {
+      //		Se obtiene acceso al objeto por medio del DOM
+      let div = document.getElementById('toggle-div');
+      //		Se valida el estado y se asigna el nuevo valor
+      (div.style.display === "none") ? div.style.display = "block": div.style.display = "none";
+    };
+
+    $(document).ready(function() {
+      //		El evento 'keyup' permite interceptar el valor digitado del input
+      $('#nombre').keyup(function(e) {
+        // console.log(e.currentTarget.value);
+        //		Se crea una expresión regular que permita validar la entrada del input
+        const regex = /^[a-z]{1}[a-z0-9\.\-_]*@{1}[a-z0-9\-_]+\.(?:[a-z]{2,3})\.?(?:[a-z]{2})?$/i;
+
+        //		Se valida el texto ingresado contra la expresión regular y se muestra un mensaje de acuerdo a las coincidencias obtenidas
+        const aux = e.currentTarget.value.match(regex);
+        if (aux !== null && aux.length === 1) {
+          $('#message').text('¡Estructura correcta de correo electrónico!');
+          $('#nombre').css({
+            'border': '2px dashed green'
+          });
+        } else {
+          $('#message').text('¡Estructura errada de correo electrónico!');
+          $('#nombre').css({
+            'border': '2px dashed red'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

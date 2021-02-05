@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+</head>
+
+<body>
+
+  <div class="container">
+    <form>
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control" id="name" />
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" class="form-control" id="fecha">
+      </div>
+      <div class="form-group">
+        <label for="textolargo">Textarea</label>
+        <textarea class="form-control" id="textolargo"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="num-cols">Filas Textarea</label>
+        <input type="number" class="form-control" id="num-cols" />
+      </div>
+      <div class="form-group">
+        <label for="select">Select</label>
+        <select class="form-control" id="opciones" name="opcion">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
+      </div>
+      <div class="form-group">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="chk1" value="option1" />
+          <label class="form-check-label" for="chk1">1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="chk2" value="option2" />
+          <label class="form-check-label" for="chk2">2</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="chk3" value="option3" />
+          <label class="form-check-label" for="chk3">3</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div class="container">
+      <label>Datos</label>
+      <div id="name-output"></div>
+      <div id="fecha-output"></div>
+      <div id="textolargo-output"></div>
+      <div id="opciones-output"></div>
+      <div id="chk-output"></div>
+    </div>
+
+    <div class="container">
+      <label>Datos modificados</label>
+      <div id="name-output-2"></div>
+      <div id="textolargo-output-2"></div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      //	Definición de objetos
+      let datos = {
+        'name': '',
+        'fecha': '',
+        'textolargo': '',
+        'opciones': '',
+        'chk': [],
+        'filas': 7
+      };
+
+      //		Manejador de set y get para el objeto gestionado por el proxy
+      const handler = {
+        set(target, key, value) {
+          target[key] = value;
+          // console.log('set handler');
+          // console.log(target);
+          // console.log(key);
+          // console.log(value);
+        },
+        get(target, key, value) {
+          // console.log('get handler');
+          // console.log(target);
+          // console.log(key);
+          // console.log(value);
+          return target[key];
+        }
+      };
+
+      //		Creación del objeto Proxy
+      const proxy = new Proxy(datos, handler);
+
+      //		sincronización del objeto proxy con los respectivos inputs y sus outputs
+      $('#textolargo').prop('rows', proxy.filas);
+
+      $('#num-cols').change(function(e) {
+        proxy.filas = e.currentTarget.value
+
+        $('#textolargo').prop('rows', proxy.filas);
+      });
+
+      $('#name').keyup(function(e) {
+        proxy.name = e.currentTarget.value
+
+        $('#name-output').html(proxy.name);
+
+        proxy.name += " (fullname)";
+        $('#name-output-2').html(proxy.name);
+      });
+
+      $('#fecha').change(function(e) {
+        proxy.fecha = e.currentTarget.value
+
+        $('#fecha-output').html(proxy.fecha);
+      });
+
+      $('#textolargo').keyup(function(e) {
+        proxy.textolargo = e.currentTarget.value
+
+        $('#textolargo-output').html(proxy.textolargo);
+
+        proxy.textolargo += ". (Texto-largo)";
+        $('#textolargo-output-2').html(proxy.textolargo);
+      });
+
+      $('#opciones').change(function(e) {
+        proxy.opciones = e.currentTarget.value
+
+        $('#opciones-output').html(proxy.opciones);
+      });
+
+      $('#chk1').click(function(e) {
+        if ($('#chk1').prop('checked')) {
+          proxy.chk[0] = e.currentTarget.value;
+
+          $('#chk-output').html(proxy.chk.join(', '));
+        } else {
+          proxy.chk.splice(0, 1);
+
+          if (proxy.chk.length > 0) {
+            $('#chk-output').html(proxy.chk.join(', '));
+          } else {
+            $('#chk-output').html('');
+          }
+        }
+      });
+
+      $('#chk2').click(function(e) {
+        if ($('#chk2').prop('checked')) {
+          proxy.chk[1] = e.currentTarget.value;
+
+          $('#chk-output').html(proxy.chk.join(', '));
+        } else {
+          proxy.chk.splice(1, 1);
+
+          if (proxy.chk.length > 0) {
+            $('#chk-output').html(proxy.chk.join(', '));
+          } else {
+            $('#chk-output').html('');
+          }
+        }
+      });
+
+      $('#chk3').click(function(e) {
+        if ($('#chk3').prop('checked')) {
+          proxy.chk[2] = e.currentTarget.value;
+
+          $('#chk-output').html(proxy.chk.join(', '));
+        } else {
+          proxy.chk.splice(2, 1);
+
+          if (proxy.chk.length > 0) {
+            $('#chk-output').html(proxy.chk.join(', '));
+          } else {
+            $('#chk-output').html('');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
