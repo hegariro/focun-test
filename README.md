@@ -17,26 +17,26 @@ El entorno de trabajo es jQuery 3.5.
     </div>
 </div>
 ```
-Rta:// Los ejercicios 1 y 2 se resolvieron en el archivo “PruebaFase_1-Ejercicio-02.html”.
+Rta:// Los ejercicios 1 y 2 se resolvieron en el archivo “<a href="https://hegariro.github.io/focun-test/PruebaFase_1-Ejercicio-02.html">PruebaFase_1-Ejercicio-02.html</a>”.
 
 #### 2: Con base en el mismo HTML del punto 1, escriba con jQuery una validación para que cuando se escribe algo en el input se valide si es un correo electrónico válido, debe incluir tanto el método o callback de validación como el evento.
 
-Rta:// Los ejercicios 1 y 2 se resolvieron en el archivo “PruebaFase_1-Ejercicio-02.html”.
+Rta:// Los ejercicios 1 y 2 se resolvieron en el archivo “<a href="https://hegariro.github.io/focun-test/PruebaFase_1-Ejercicio-02.html">PruebaFase_1-Ejercicio-02.html</a>”.
 
 #### 3: Diseñe una página en HTML (con todo el marcado en HTML, usando bootstrap y jQuery) que contenga un formulario con 5 campos, 1 de texto, 1 de fecha, 1 de area de texto, 1 de lista de selección y uno de checkbox. Genere un objeto en javascript que contenga 5 propiedades (modelo)
 
-Rta:// Adjunto archivo “PruebaFase_1-Ejercicio-03.html” con la respuesta
+Rta:// Adjunto archivo “<a href="https://hegariro.github.io/focun-test/PruebaFase_1-Ejercicio-03.html">PruebaFase_1-Ejercicio-03.html</a>” con la respuesta
 
 #### 4: Con el código diseñado para el punto 3, Genere un método de asociación (binding) entre la vista (los 5 campos) y el modelo, haciendo que cada vez que se modifique un valor en la vista, el modelo se actualice automáticamente.
 
-Rta:// Los ejercicios 4 y 5 se resolvieron en el archivo “PruebaFase_1-Ejercicio-04.html”.
+Rta:// Los ejercicios 4 y 5 se resolvieron en el archivo “<a href="https://hegariro.github.io/focun-test/PruebaFase_1-Ejercicio-04.html">PruebaFase_1-Ejercicio-04.html</a>”.
 
 #### 5: Con el mismo código diseñado, genere una asociación (bonding) desde el modelo a la vista, haciendo que cualquier cambio manual al modelo se refleje automáticamente en la vista.
 
-Rta:// Los ejercicios 4 y 5 se resolvieron en el archivo “PruebaFase_1-Ejercicio-04.html”.
+Rta:// Los ejercicios 4 y 5 se resolvieron en el archivo “<a href="https://hegariro.github.io/focun-test/PruebaFase_1-Ejercicio-04.html">PruebaFase_1-Ejercicio-04.html</a>”.
 
 #### 6: Adicione una propiedad al modelo para que se establezca la altura del control textarea (cantidad de líneas) por medio de la nueva propiedad del modelo.
-Rta:// Adjunto archivo “PruebaFase_1-Ejercicio-05.html” con la respuesta
+Rta:// Adjunto archivo “<a href="https://hegariro.github.io/focun-test/PruebaFase_1-Ejercicio-05.html">PruebaFase_1-Ejercicio-05.html</a>” con la respuesta
 
 #### 7: Documente todo el código desarrollado.
 
